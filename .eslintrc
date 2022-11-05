@@ -1,0 +1,9 @@
+{
+    "extends": "@sapphire",
+    "ignorePatterns": [
+      "*.mjs"
+    ],
+    "rules": {
+      "@typescript-eslint/no-extraneous-class": "off"
+    }
+  }

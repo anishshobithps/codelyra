@@ -1,0 +1,22 @@
+{
+  "extends": "@sapphire/ts-config",
+  "compilerOptions": {
+    "rootDirs": [
+      "src",
+      "package.json"
+    ],
+    "outDir": "dist",
+    "baseUrl": "src",
+    "module": "esnext",
+    "forceConsistentCasingInFileNames": false,
+    "resolveJsonModule": true,
+    "tsBuildInfoFile": "dist/.tsbuildinfo",
+    "paths": {
+			"#lib/*": ["./lib/*"],
+			"#utils/*": ["./lib/utils/*"]
+		}
+  },
+  "include": [
+    "src"
+  ]
+}

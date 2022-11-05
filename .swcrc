@@ -1,0 +1,28 @@
+{
+	"jsc": {
+	  "parser": {
+		"syntax": "typescript",
+		"tsx": false,
+		"decorators": true
+	  },
+	  "target": "es2022",
+	  "keepClassNames": true,
+	  "transform": {
+		"decoratorMetadata": true,
+		"legacyDecorator": true
+	  },
+	  "paths": {
+		"#lib/*": [
+		  "./lib/*"
+		],
+		"#utils/*": [
+		  "./lib/utils/*"
+		]
+	  },
+	  "baseUrl": "./src"
+	},
+	"module": {
+	  "type": "es6"
+	},
+	"sourceMaps": true
+  }
