@@ -15,7 +15,8 @@ COPY --chown=node:node yarn.lock .
 COPY --chown=node:node package.json .
 COPY --chown=node:node .yarn/ .yarn/
 COPY --chown=node:node .yarnrc.yml .
-COPY --chown=node:node tsconfig.base.json tsconfig.base.json
+COPY --chown=node:node .swcrc .
+COPY --chown=node:node tsconfig.eslint.json .
 COPY --chown=node:node package.json .
 COPY --chown=node:node tsconfig.json .
 
