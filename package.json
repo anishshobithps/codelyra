@@ -4,7 +4,6 @@
   "version": "1.0.0",
   "main": "dist/index.js",
   "type": "module",
-  "packageManager": "yarn@3.2.4",
   "devDependencies": {
     "@commitlint/cli": "^17.2.0",
     "@commitlint/config-conventional": "^17.2.0",
