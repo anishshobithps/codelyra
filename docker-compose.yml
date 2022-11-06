@@ -1,0 +1,10 @@
+version: "1.0"
+
+services:
+  interesting:
+    build:
+      context: .
+      target: production
+    env_file: .env
+    volumes: 
+      - ./:/opt/app
