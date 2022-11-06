@@ -68,6 +68,12 @@
   "lint-staged": {
     "*.{mjs,js,ts}": "eslint --fix --ext mjs,js,ts"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn lint",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
   "config": {
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
