@@ -14,6 +14,7 @@ RUN apk add -u --no-cache \
 COPY --chown=node:node yarn.lock .
 COPY --chown=node:node package.json .
 COPY --chown=node:node .yarn/ .yarn/
+COPY --chown=node:node scripts/ scripts/
 COPY --chown=node:node .yarnrc.yml .
 COPY --chown=node:node .swcrc .
 COPY --chown=node:node tsconfig.eslint.json .
