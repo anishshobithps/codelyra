@@ -50,12 +50,13 @@ export class RunCommand extends Command {
 				throw new UserError({ identifier: 'The session has expired, please try again.' });
 			});
 		const lang = interaction.options.getString('lang', true);
-
+		const code = modalInteraction.fields.getTextInputValue('codeInput').replace('%22', '"');
 		const result = await evaluate({
-			code: modalInteraction.fields.getTextInputValue('codeInput').replace('%22', '"'),
+			code,
 			language: lang
 		});
 		const res: string[] = [];
+		res.push(`❯ **Input:** ${Formatters.codeBlock(code)}`);
 		res.push(`❯ **Language:** ${result.language.name}`);
 		if (result.output.length) res.push(`❯ **Output:**${Formatters.codeBlock(result.output)}`);
 		res.push(`❯ **Debug:** ${Formatters.codeBlock(result.debug!)}`);
