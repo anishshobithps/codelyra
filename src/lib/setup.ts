@@ -11,7 +11,6 @@ import { config } from 'dotenv-cra';
 import { join } from 'node:path';
 import { inspect } from 'node:util';
 import { readFileSync } from 'node:fs';
-import { srcDir } from '#utils/constants';
 import { EnvClient } from '#utils/env/parser';
 import type { PackageJson } from 'type-fest';
 
@@ -32,7 +31,7 @@ Object.defineProperty(container, 'env', {
 });
 
 // Read env var
-config({ path: join(srcDir, '.env') });
+config({ path: join(process.cwd(), '.env') });
 
 // Set default inspection depth
 inspect.defaultOptions.depth = 1;

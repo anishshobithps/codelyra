@@ -1,4 +1,4 @@
-version: "1.0"
+version: "1"
 
 services:
   interesting:
@@ -7,4 +7,4 @@ services:
       target: production
     env_file: .env
     volumes: 
-      - ./:/opt/app
+      - ./:/opt/interesting

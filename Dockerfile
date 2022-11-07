@@ -1,25 +1,21 @@
-FROM node:18-alpine3.15 AS base
+FROM node:18-buster-slim as base
 
 WORKDIR /opt/app
 
-ENV HUSKY=0
-ENV CI=true
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends build-essential python3 dumb-init && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
 
-RUN apk add -u --no-cache \
-	dumb-init \
-	fontconfig \
-	jq \
-	nodejs
-
-COPY --chown=node:node yarn.lock .
-COPY --chown=node:node package.json .
+COPY ./.env /opt/app/
+COPY ./package.json /opt/app/
+COPY ./yarn.lock /opt/app/
+COPY ./.yarnrc.yml /opt/app/
+COPY ./.swcrc /opt/app/
+COPY ./tsconfig.eslint.json /opt/app/
+COPY ./tsconfig.json /opt/app/
 COPY --chown=node:node .yarn/ .yarn/
 COPY --chown=node:node scripts/ scripts/
-COPY --chown=node:node .yarnrc.yml .
-COPY --chown=node:node .swcrc .
-COPY --chown=node:node tsconfig.eslint.json .
-COPY --chown=node:node package.json .
-COPY --chown=node:node tsconfig.json .
 
 RUN sed -i 's/"prepare": "husky install\( .github\/husky\)\?"/"prepare": ""/' ./package.json
 
@@ -27,7 +23,9 @@ ENTRYPOINT ["dumb-init", "--"]
 
 FROM base as build
 
-COPY . /opt/app
+RUN yarn
+
+COPY . /opt/app/
 
 RUN yarn build
 
