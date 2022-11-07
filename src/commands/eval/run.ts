@@ -1,39 +1,69 @@
-import { Args, Command, CommandOptions } from '@sapphire/framework';
+import { ApplicationCommandRegistry, Command, CommandOptions, UserError, type ChatInputCommand } from '@sapphire/framework';
 import { ApplyOptions } from '@sapphire/decorators';
-import { Formatters, type Message } from 'discord.js';
+import { Modal, TextInputComponent, MessageActionRow, ModalActionRowComponent, Formatters } from 'discord.js';
 import { constants, evaluate } from 'tryitonline';
-import { send } from '@sapphire/plugin-editable-commands';
-
+import { Duration } from '#utils/constants';
 @ApplyOptions<CommandOptions>({
-	description: 'Run arbitary code on discord using the bot.',
-	options: ['lang', 'language', 'l']
+	description: 'Run arbitary code on discord using the bot.'
 })
-export class PingCommand extends Command {
-	public override async messageRun(message: Message, args: Args) {
-		constants({ defaultTimeout: 15_000 });
-
-		const lang = args.next();
-		if (!lang) return send(message, 'Provide a language');
-
-		let code = await args.rest('string');
-		if (!code.startsWith('```') || !code.endsWith('```')) return send(message, 'Send code within code blocks');
-
-		code = code.slice(4, -4);
-		const result = await evaluate({
-			code,
-			language: lang
-		}).catch((error) => {
-			return send(message, Formatters.codeBlock(error));
+export class RunCommand extends Command {
+	public override registerApplicationCommands(registry: ApplicationCommandRegistry) {
+		registry.registerChatInputCommand({
+			name: this.name,
+			description: this.description,
+			options: [
+				{
+					type: 'STRING',
+					name: 'lang',
+					description: 'The language you want to use.',
+					required: true,
+					autocomplete: true
+				}
+			]
 		});
+	}
 
-		return send(
-			message,
-			// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-			// @ts-ignore
-			[`❯ **Language:** ${result.language.name}`, `❯ **Output:**${Formatters.codeBlock(result.output)}`]
+	public override async chatInputRun(interaction: ChatInputCommand.Interaction) {
+		constants({ defaultTimeout: 15_000 });
+		const modalCustomId = `code-modal-${interaction.id}`;
+		const modal = new Modal() //
+			.setCustomId(modalCustomId)
+			.setTitle('Code')
+			.setComponents(
+				new MessageActionRow<ModalActionRowComponent>().addComponents(
+					new TextInputComponent() //
+						.setCustomId('codeInput')
+						.setLabel('Code')
+						.setStyle('PARAGRAPH')
+						.setRequired(true)
+				)
+			);
+
+		await interaction.showModal(modal);
+		const modalInteraction = await interaction
+			.awaitModalSubmit({
+				filter: (interaction) => interaction.customId === modalCustomId,
+				time: 10 * Duration.Minute
+			})
+			.catch((error) => {
+				if ((error as NodeJS.ErrnoException).code !== 'INTERACTION_COLLECTOR_ERROR') throw error;
+				throw new UserError({ identifier: 'The session has expired, please try again.' });
+			});
+		const lang = interaction.options.getString('lang', true);
+
+		const result = await evaluate({
+			code: modalInteraction.fields.getTextInputValue('codeInput').replace('%22', '"'),
+			language: lang
+		});
+		const res: string[] = [];
+		res.push(`❯ **Language:** ${result.language.name}`);
+		if (result.output.length) res.push(`❯ **Output:**${Formatters.codeBlock(result.output)}`);
+		res.push(`❯ **Debug:** ${Formatters.codeBlock(result.debug!)}`);
+		return modalInteraction.reply({
+			content: res
 				.join('\n')
 				.replace(/( {2}| {4})/g, '')
 				.trimEnd()
-		);
+		});
 	}
 }

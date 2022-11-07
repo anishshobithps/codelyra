@@ -5,8 +5,6 @@
   "main": "dist/index.js",
   "type": "module",
   "devDependencies": {
-    "@commitlint/cli": "^17.2.0",
-    "@commitlint/config-conventional": "^17.2.0",
     "@sapphire/eslint-config": "^4.3.8",
     "@sapphire/prettier-config": "^1.4.4",
     "@sapphire/ts-config": "^3.3.4",
@@ -17,11 +15,9 @@
     "@types/prettier": "^2",
     "@typescript-eslint/eslint-plugin": "^5.42.0",
     "@typescript-eslint/parser": "^5.42.0",
-    "cz-conventional-changelog": "^3.3.0",
     "eslint": "^8.26.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.2.1",
-    "husky": "^8.0.1",
     "lint-staged": "^13.0.3",
     "prettier": "^2.7.1",
     "typescript": "^4.8.4"
@@ -35,6 +31,7 @@
     "colorette": "^2.0.19",
     "discord.js": "13.x",
     "dotenv-cra": "^3.0.2",
+    "match-sorter": "^6.3.1",
     "reflect-metadata": "^0.1.13",
     "table": "^6.8.1",
     "tryitonline": "^1.1.0"
@@ -51,31 +48,11 @@
     "start": "node --no-warnings --experimental-specifier-resolution=node .",
     "dev": "yarn build && yarn start",
     "watch:start": "\"yarn watch\" & \"yarn start\"",
-    "format": "prettier --write \"src/**/*.ts\"",
-    "postinstall": "husky install .github/husky"  
+    "format": "prettier --write \"src/**/*.ts\""
   },
   "import": {
     "#lib/*": "./dist/lib/*.js",
     "#utils/*": "./dist/lib/utils/*.js"
   },
-  "prettier": "@sapphire/prettier-config",
-  "commitlint": {
-    "extends": [
-      "@commitlint/config-conventional"
-    ]
-  },
-  "lint-staged": {
-    "*.{mjs,js,ts}": "eslint --fix --ext mjs,js,ts"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "yarn lint",
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
-    }
-  },
-  "config": {
-    "commitizen": {
-      "path": "./node_modules/cz-conventional-changelog"
-    }
-  }
+  "prettier": "@sapphire/prettier-config"
 }
