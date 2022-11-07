@@ -7,7 +7,6 @@ RUN apt-get update && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
-COPY ./.env /opt/app/
 COPY ./package.json /opt/app/
 COPY ./yarn.lock /opt/app/
 COPY ./.yarnrc.yml /opt/app/
