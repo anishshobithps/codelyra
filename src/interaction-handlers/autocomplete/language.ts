@@ -15,7 +15,7 @@ export class LangAutoComplete extends InteractionHandler {
 
 	public parse(interaction: AutocompleteInteraction) {
 		const focusedOption = interaction.options.getFocused(true);
-		if (focusedOption.name !== 'lang') return this.none();
+		if (focusedOption.name !== 'language') return this.none();
 
 		const query = focusedOption.value.toString().trim();
 		const parsedData = [];

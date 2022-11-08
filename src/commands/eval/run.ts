@@ -14,10 +14,35 @@ export class RunCommand extends Command {
 			options: [
 				{
 					type: 'STRING',
-					name: 'lang',
+					name: 'language',
 					description: 'The language you want to use.',
 					required: true,
 					autocomplete: true
+				},
+				{
+					type: 'STRING',
+					name: 'flags',
+					description: 'If you have to pass any compiler flags.'
+				},
+				{
+					type: 'STRING',
+					name: 'options',
+					description: 'If you have to pass any command line options.'
+				},
+				{
+					type: 'STRING',
+					name: 'driver',
+					description: 'Any driver options if you have to pass'
+				},
+				{
+					type: 'STRING',
+					name: 'input',
+					description: 'If you want to input any data to the code.'
+				},
+				{
+					type: 'STRING',
+					name: 'args',
+					description: 'If you have any arguments to pass'
 				}
 			]
 		});
@@ -49,11 +74,11 @@ export class RunCommand extends Command {
 				if ((error as NodeJS.ErrnoException).code !== 'INTERACTION_COLLECTOR_ERROR') throw error;
 				throw new UserError({ identifier: 'The session has expired, please try again.' });
 			});
-		const lang = interaction.options.getString('lang', true);
+		const options = this.getOptions(interaction);
 		const code = modalInteraction.fields.getTextInputValue('codeInput').replace('%22', '"');
 		const result = await evaluate({
 			code,
-			language: lang
+			...options
 		});
 		const res: string[] = [];
 		res.push(`❯ **Input:** ${Formatters.codeBlock(code)}`);
@@ -67,4 +92,26 @@ export class RunCommand extends Command {
 				.trimEnd()
 		});
 	}
+
+	private getOptions(interaction: ChatInputCommand.Interaction) {
+		const options: EvaluateOptions = {
+			language: interaction.options.getString('language', true),
+			flags: interaction.options.getString('flags')?.split(' '),
+			options: interaction.options.getString('options')?.split(' '),
+			driver: interaction.options.getString('driver')?.split(' '),
+			input: interaction.options.getString('input') ?? undefined,
+			args: interaction.options.getString('args')?.split(' ')
+		};
+
+		return options;
+	}
+}
+
+interface EvaluateOptions {
+	language: string;
+	flags: string[] | undefined;
+	options: string[] | undefined;
+	driver: string[] | undefined;
+	input: string | undefined;
+	args: string[] | undefined;
 }
