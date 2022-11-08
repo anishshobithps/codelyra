@@ -109,6 +109,105 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@napi-rs/canvas-android-arm64@npm:0.1.30":
+  version: 0.1.30
+  resolution: "@napi-rs/canvas-android-arm64@npm:0.1.30"
+  conditions: os=android & cpu=arm64
+  languageName: node
+  linkType: hard
+
+"@napi-rs/canvas-darwin-arm64@npm:0.1.30":
+  version: 0.1.30
+  resolution: "@napi-rs/canvas-darwin-arm64@npm:0.1.30"
+  conditions: os=darwin & cpu=arm64
+  languageName: node
+  linkType: hard
+
+"@napi-rs/canvas-darwin-x64@npm:0.1.30":
+  version: 0.1.30
+  resolution: "@napi-rs/canvas-darwin-x64@npm:0.1.30"
+  conditions: os=darwin & cpu=x64
+  languageName: node
+  linkType: hard
+
+"@napi-rs/canvas-linux-arm-gnueabihf@npm:0.1.30":
+  version: 0.1.30
+  resolution: "@napi-rs/canvas-linux-arm-gnueabihf@npm:0.1.30"
+  conditions: os=linux & cpu=arm
+  languageName: node
+  linkType: hard
+
+"@napi-rs/canvas-linux-arm64-gnu@npm:0.1.30":
+  version: 0.1.30
+  resolution: "@napi-rs/canvas-linux-arm64-gnu@npm:0.1.30"
+  conditions: os=linux & cpu=arm64 & libc=glibc
+  languageName: node
+  linkType: hard
+
+"@napi-rs/canvas-linux-arm64-musl@npm:0.1.30":
+  version: 0.1.30
+  resolution: "@napi-rs/canvas-linux-arm64-musl@npm:0.1.30"
+  conditions: os=linux & cpu=arm64 & libc=musl
+  languageName: node
+  linkType: hard
+
+"@napi-rs/canvas-linux-x64-gnu@npm:0.1.30":
+  version: 0.1.30
+  resolution: "@napi-rs/canvas-linux-x64-gnu@npm:0.1.30"
+  conditions: os=linux & cpu=x64 & libc=glibc
+  languageName: node
+  linkType: hard
+
+"@napi-rs/canvas-linux-x64-musl@npm:0.1.30":
+  version: 0.1.30
+  resolution: "@napi-rs/canvas-linux-x64-musl@npm:0.1.30"
+  conditions: os=linux & cpu=x64 & libc=musl
+  languageName: node
+  linkType: hard
+
+"@napi-rs/canvas-win32-x64-msvc@npm:0.1.30":
+  version: 0.1.30
+  resolution: "@napi-rs/canvas-win32-x64-msvc@npm:0.1.30"
+  conditions: os=win32 & cpu=x64
+  languageName: node
+  linkType: hard
+
+"@napi-rs/canvas@npm:^0.1.30":
+  version: 0.1.30
+  resolution: "@napi-rs/canvas@npm:0.1.30"
+  dependencies:
+    "@napi-rs/canvas-android-arm64": 0.1.30
+    "@napi-rs/canvas-darwin-arm64": 0.1.30
+    "@napi-rs/canvas-darwin-x64": 0.1.30
+    "@napi-rs/canvas-linux-arm-gnueabihf": 0.1.30
+    "@napi-rs/canvas-linux-arm64-gnu": 0.1.30
+    "@napi-rs/canvas-linux-arm64-musl": 0.1.30
+    "@napi-rs/canvas-linux-x64-gnu": 0.1.30
+    "@napi-rs/canvas-linux-x64-musl": 0.1.30
+    "@napi-rs/canvas-win32-x64-msvc": 0.1.30
+  dependenciesMeta:
+    "@napi-rs/canvas-android-arm64":
+      optional: true
+    "@napi-rs/canvas-darwin-arm64":
+      optional: true
+    "@napi-rs/canvas-darwin-x64":
+      optional: true
+    "@napi-rs/canvas-linux-arm-gnueabihf":
+      optional: true
+    "@napi-rs/canvas-linux-arm64-gnu":
+      optional: true
+    "@napi-rs/canvas-linux-arm64-musl":
+      optional: true
+    "@napi-rs/canvas-linux-x64-gnu":
+      optional: true
+    "@napi-rs/canvas-linux-x64-musl":
+      optional: true
+    "@napi-rs/canvas-win32-x64-msvc":
+      optional: true
+  checksum: ee5e6f308a530daf1df85d4fe03877f8d12e06ed00c36ca128166832dd7eefd2c0481c8031a4150688e32cf96838719d93a55c2e1f0a17feb012ce6981c0ab08
+  languageName: node
+  linkType: hard
+
 "@nodelib/fs.scandir@npm:2.1.5":
   version: 2.1.5
   resolution: "@nodelib/fs.scandir@npm:2.1.5"
@@ -928,6 +1027,15 @@ __metadata:
   version: 3.1.0
   resolution: "callsites@npm:3.1.0"
   checksum: 072d17b6abb459c2ba96598918b55868af677154bec7e73d222ef95a8fdb9bbf7dae96a8421085cdad8cd190d86653b5b6dc55a4484f2e5b2e27d5e0c3fc15b3
+  languageName: node
+  linkType: hard
+
+"canvas-constructor@npm:^7.0.0":
+  version: 7.0.0
+  resolution: "canvas-constructor@npm:7.0.0"
+  dependencies:
+    tslib: ^2.4.0
+  checksum: 0890ad860b9673f2bde285895d80421ab6665b30887ff2c9cc4fb167a349aca6496f8ede4c27766f7858635381e922cd221197d6fcbe3e1df9b2c37b2c480c1e
   languageName: node
   linkType: hard
 
@@ -1803,6 +1911,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "interesting@workspace:."
   dependencies:
+    "@napi-rs/canvas": ^0.1.30
     "@sapphire/decorators": ^5.0.0
     "@sapphire/eslint-config": ^4.3.8
     "@sapphire/framework": ^3.1.3
@@ -1818,6 +1927,7 @@ __metadata:
     "@types/prettier": ^2
     "@typescript-eslint/eslint-plugin": ^5.42.0
     "@typescript-eslint/parser": ^5.42.0
+    canvas-constructor: ^7.0.0
     colorette: ^2.0.19
     discord.js: 13.x
     dotenv-cra: ^3.0.2
