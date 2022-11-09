@@ -1,26 +1,15 @@
-import { container, AllFlowsPrecondition } from '@sapphire/framework';
-import type { CommandInteraction, ContextMenuInteraction, Message, Snowflake } from 'discord.js';
+import { container, Precondition, PreconditionResult } from '@sapphire/framework';
+import type { CommandInteraction, Message } from 'discord.js';
 
 const OWNERS = container.env.envParseArray('OWNERS');
 
-export class UserPrecondition extends AllFlowsPrecondition {
-	#message = 'This command can only be used by the owner.';
-
-	public override chatInputRun(interaction: CommandInteraction) {
-		return this.doOwnerCheck(interaction.user.id);
+export class OwnerOnly extends Precondition {
+	public messageRun(message: Message): PreconditionResult {
+		return OWNERS.includes(message.author.id) ? this.ok() : this.error({ message: 'This command can only be used by bot owner!' });
 	}
 
-	public override contextMenuRun(interaction: ContextMenuInteraction) {
-		return this.doOwnerCheck(interaction.user.id);
-	}
-
-	public override messageRun(message: Message) {
-		return this.doOwnerCheck(message.author.id);
-	}
-
-	private doOwnerCheck(userId: Snowflake) {
-		console.log(OWNERS);
-		return OWNERS.includes(userId) ? this.ok() : this.error({ message: this.#message });
+	public chatInputRun(interaction: CommandInteraction): PreconditionResult {
+		return OWNERS.includes(interaction.user.id) ? this.ok() : this.error({ message: 'This command can only be used by bot owner!' });
 	}
 }
 
