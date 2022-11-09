@@ -10,8 +10,8 @@ import {
 } from './util';
 import { Parser } from 'acorn';
 import * as CanvasConstructor from 'canvas-constructor/napi-rs';
-import { extname } from 'path';
-import { URL } from 'url';
+import { extname } from 'node:path';
+import { URL } from 'node:url';
 
 function* filter<T extends object>(object: T, keys: readonly (keyof T)[]) {
 	for (const [key, value] of Object.entries(object)) {
