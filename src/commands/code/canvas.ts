@@ -1,13 +1,13 @@
 // skyra-project/alestra is licensed under the Apache License 2.0
 import { evaluate } from '#lib/canvas/canvas';
+import { Canvas } from 'canvas-constructor/napi-rs';
+import { GuildMember, ImageURLOptions, Message, MessageAttachment, User } from 'discord.js';
+import { inspect } from 'node:util';
 import { ApplyOptions } from '@sapphire/decorators';
 import { Args, Command, CommandOptions } from '@sapphire/framework';
 import { Stopwatch } from '@sapphire/stopwatch';
 import { codeBlock } from '@sapphire/utilities';
 import { send } from '@skyra/editable-commands';
-import { Canvas } from 'canvas-constructor/napi-rs';
-import { GuildMember, ImageURLOptions, Message, MessageAttachment, User } from 'discord.js';
-import { inspect } from 'util';
 
 const CODEBLOCK = /^```(?:js|javascript)?([\s\S]+)```$/;
 

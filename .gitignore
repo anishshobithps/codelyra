@@ -105,3 +105,6 @@ dist
 
 # Yarn v3
 install-state.gz
+
+# Lavalink
+records/

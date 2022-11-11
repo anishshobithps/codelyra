@@ -36,7 +36,9 @@
     "match-sorter": "^6.3.1",
     "reflect-metadata": "^0.1.13",
     "table": "^6.8.1",
-    "tryitonline": "^1.1.0"
+    "tryitonline": "^1.1.0",
+    "undici": "^5.12.0",
+    "vulkava": "^1.5.9"
   },
   "engines": {
     "node": "18.x",

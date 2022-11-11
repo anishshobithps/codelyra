@@ -1,10 +1,20 @@
 version: "1"
 
 services:
+  lavalink:
+    build:
+      context: ./lavalink
+    restart: unless-stopped
+    container_name: interesting-lavalink
+    volumes:
+      - ./lavalink:/opt/lavalink
   interesting:
     build:
       context: .
       target: production
     env_file: .env
+    container_name: interesting-bot
+    links:
+      - "lavalink"
     volumes: 
-      - ./:/opt/interesting
+      - ./:/opt/app

@@ -1,6 +1,6 @@
 import { ApplyOptions } from '@sapphire/decorators';
-import { Command, CommandOptions } from '@sapphire/framework';
 import { PaginatedMessage } from '@sapphire/discord.js-utilities';
+import { Command, CommandOptions } from '@sapphire/framework';
 import type { Message, MessageEmbed } from 'discord.js';
 
 @ApplyOptions<CommandOptions>({

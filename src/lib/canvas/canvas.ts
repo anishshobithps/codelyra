@@ -1,5 +1,8 @@
 /* eslint-disable @typescript-eslint/no-throw-literal */
-/* eslint-disable func-call-spacing */
+import { Parser } from 'acorn';
+import * as CanvasConstructor from 'canvas-constructor/napi-rs';
+import { extname } from 'node:path';
+import { URL } from 'node:url';
 import {
 	AlreadyDeclaredIdentifier,
 	CompilationParseError,
@@ -8,10 +11,6 @@ import {
 	SandboxPropertyError,
 	UnknownIdentifier
 } from './util';
-import { Parser } from 'acorn';
-import * as CanvasConstructor from 'canvas-constructor/napi-rs';
-import { extname } from 'node:path';
-import { URL } from 'node:url';
 
 function* filter<T extends object>(object: T, keys: readonly (keyof T)[]) {
 	for (const [key, value] of Object.entries(object)) {

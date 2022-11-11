@@ -1,8 +1,9 @@
-import { ApplicationCommandRegistry, Command, CommandOptions, UserError, type ChatInputCommand } from '@sapphire/framework';
-import { ApplyOptions } from '@sapphire/decorators';
-import { Modal, TextInputComponent, MessageActionRow, ModalActionRowComponent, Formatters } from 'discord.js';
-import { constants, evaluate } from 'tryitonline';
 import { Duration } from '#utils/constants';
+import { Formatters, MessageActionRow, Modal, ModalActionRowComponent, TextInputComponent } from 'discord.js';
+import { constants, evaluate } from 'tryitonline';
+import { ApplyOptions } from '@sapphire/decorators';
+import { ApplicationCommandRegistry, ChatInputCommand, Command, CommandOptions, UserError } from '@sapphire/framework';
+
 @ApplyOptions<CommandOptions>({
 	description: 'Run arbitary code on discord using the bot.'
 })

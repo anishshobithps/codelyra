@@ -1,8 +1,9 @@
-import { container, Events, Listener, Store, type ListenerOptions } from '@sapphire/framework';
-import { ApplyOptions } from '@sapphire/decorators';
-import { blue, gray, magenta, magentaBright, white, cyan, green, yellow } from 'colorette';
 import { capitalize } from '#utils/capitalize';
 import { pluralise } from '#utils/pluralise';
+import { blue, cyan, gray, green, magenta, magentaBright, white, yellow } from 'colorette';
+
+import { ApplyOptions } from '@sapphire/decorators';
+import { container, Events, Listener, ListenerOptions, Store } from '@sapphire/framework';
 
 const dev = container.env.envParseBoolean('DEV');
 
@@ -14,6 +15,7 @@ export class ReadyListner extends Listener {
 	private readonly style = dev ? yellow : blue;
 
 	public override run() {
+		this.container.audio.start(this.container.client.id!);
 		this.printBanner();
 		this.printStoreDebugInformation();
 		// eslint-disable-next-line @typescript-eslint/no-non-null-asserted-optional-chain

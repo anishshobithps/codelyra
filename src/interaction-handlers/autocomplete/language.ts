@@ -1,12 +1,10 @@
+import { langs } from '#lib/utils/constants';
+import { matchSorter } from 'match-sorter';
 import { ApplyOptions } from '@sapphire/decorators';
 import { InteractionHandler, InteractionHandlerOptions, InteractionHandlerTypes } from '@sapphire/framework';
-import { matchSorter } from 'match-sorter';
 import type { AutocompleteInteraction } from 'discord.js';
-import { langs } from '#lib/utils/constants';
-
 @ApplyOptions<InteractionHandlerOptions>({
-	interactionHandlerType: InteractionHandlerTypes.Autocomplete,
-	name: 'langAutoComplete'
+	interactionHandlerType: InteractionHandlerTypes.Autocomplete
 })
 export class LangAutoComplete extends InteractionHandler {
 	public async run(interaction: AutocompleteInteraction, parsedData: Array<{ name: string; value: string }>) {
