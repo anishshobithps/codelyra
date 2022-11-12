@@ -3,6 +3,7 @@ process.env.NODE_ENV ??= 'development';
 
 import 'reflect-metadata';
 import '@sapphire/plugin-logger/register';
+import '@sapphire/plugin-pattern-commands/register';
 import '@sapphire/plugin-editable-commands/register';
 
 import * as colorette from 'colorette';
