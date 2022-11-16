@@ -22,5 +22,8 @@ export interface Env {
 	PREFIX: string;
 	OWNERS: ArrayString;
 	BOT_NAME: string;
+	BOT_ID: string;
 	DEV: BooleanString;
+	BOT_GENDER: string;
+	API_KEY: string;
 }
