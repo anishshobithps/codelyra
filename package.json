@@ -43,7 +43,6 @@
     "match-sorter": "^6.3.1",
     "reflect-metadata": "^0.1.13",
     "smartestchatbot": "^3.0.0",
-    "table": "^6.8.1",
     "tryitonline": "^1.1.0"
   },
   "engines": {
