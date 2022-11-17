@@ -7,29 +7,6 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 export const rootDir = join(__dirname, '..', '..', '..');
 export const srcDir = join(rootDir, 'src');
 
-export const tableConfig = {
-	border: {
-		topBody: `─`,
-		topJoin: `┬`,
-		topLeft: `┌`,
-		topRight: `┐`,
-
-		bottomBody: `─`,
-		bottomJoin: `┴`,
-		bottomLeft: `└`,
-		bottomRight: `┘`,
-
-		bodyLeft: `│`,
-		bodyRight: `│`,
-		bodyJoin: `│`,
-
-		joinBody: `─`,
-		joinLeft: `├`,
-		joinRight: `┤`,
-		joinJoin: `┼`
-	}
-} as const;
-
 export enum Duration {
 	Year = 31_557_600_000,
 	Month = 2_629_800_000,
