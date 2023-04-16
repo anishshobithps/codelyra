@@ -4,7 +4,7 @@ import { Modal, TextInputComponent, MessageActionRow, ModalActionRowComponent, F
 import { constants, evaluate } from 'tryitonline';
 import { Duration } from '#utils/constants';
 @ApplyOptions<CommandOptions>({
-	description: 'Run arbitary code on discord using the bot.'
+	description: 'Run arbitrary code on discord using the bot.'
 })
 export class RunCommand extends Command {
 	public override registerApplicationCommands(registry: ApplicationCommandRegistry) {
